@@ -75,11 +75,10 @@ Docker Compose
 Clone and enter the project directory:
 
 ```
-git clone https://your-repo-url.git
 cd note-management-app  
 
 Copy the Laravel environment file:
-cp backend/.env.example backend/.env
+cp .env.docker .env
 
 Start the containers:
 docker-compose up --build -d
