@@ -10,11 +10,17 @@ use Illuminate\Support\Facades\Validator;
 
 class NotesController extends Controller
 {
-    public function index(): JsonResponse
+    public function index(Request $request): JsonResponse
     {
-        $notes = Note::with('user')->get();
-        return response()->json($notes);
+        $query = Note::with('user');
+
+        if ($request->has('user_id')) {
+            $query->where('user_id', $request->user_id);
+        }
+
+        return response()->json($query->get());
     }
+
 
     public function store(Request $request): JsonResponse
     {

@@ -1,74 +1,144 @@
 # 📝 Note Management App
 
-A simple Laravel + Vue.js app for managing notes related to users. Supports both local and Docker development environments.
+A full-stack Note Management system built using **Laravel 10+** for the backend (REST API) and **Vue.js 3** for the frontend (SPA). The app allows users to create and view notes, with each note linked to a specific user. Designed to run in both **local** and **Dockerized** development environments.
 
 ---
 
 ## 🔧 Tech Stack
 
-- Laravel 10+
-- Vue.js 3 (SPA)
-- Tailwind CSS
-- Axios
-- MySQL
-- Docker (optional)
+- **Backend**: Laravel 10+ (PHP 8.2+)
+- **Frontend**: Vue.js 3 (Composition API)
+- **HTTP Client**: Axios
+- **Styling**: Tailwind CSS
+- **Database**: MySQL
+- **DevOps**: Docker & Docker Compose (optional)
 
+---
+
+## ⚙️ Features
+
+### ✅ Core Functionality
+- List all users with their notes
+- List all notes with associated user data
+- Create new notes (with validation)
+- SPA routing with login and dashboard views
+- Token-based auth via `localStorage`
+- Frontend form validation
+- Note filtering by user
+- Logout mechanism
+- Basic responsive UI using Tailwind
+
+---
+
+## 📂 Project Structure
+```
+note-management-app/
+├── note-manager/ # Laravel API
+├── note-manager/resource/js/ # Vue.js 3 SPA
+├── docker-compose.yml
+└── README.md
+```
 ---
 
 ## 🚀 Local Development Setup (without Docker)
 
 ### ✅ Prerequisites
-
-- PHP >= 8.2
+- PHP ≥ 8.2
 - Composer
 - Node.js & npm
-- MySQL
+- MySQL server
 
-### 📦 Installation
+### 📦 Backend Setup
 
 ```bash
-git clone https://your-repo-url.git
-cd note-management-app
-
+cd backend
 cp .env.example .env
 composer install
 php artisan key:generate
-
-npm install
-npm run dev
-
 php artisan migrate
 php artisan serve
 ```
-## 🐳 Docker Setup
-
-### ✅ Prerequisites
-
-- Docker
-- Docker Compose
-
-### 📁 Setup and Run
-
-1. Copy the example environment file:
-
-```bash
-cp .env.example .env
+🎨 Frontend Setup
 ```
-2. Build and start the containers:
-```bash
+cd frontend
+npm install
+npm run dev
+```
+🐳 Docker Development Setup
+
+✅ Prerequisites
+Docker
+
+Docker Compose
+
+📁 Setup & Run
+Clone and enter the project directory:
+
+```
+git clone https://your-repo-url.git
+cd note-management-app  
+
+Copy the Laravel environment file:
+cp backend/.env.example backend/.env
+
+Start the containers:
 docker-compose up --build -d
-```
-3. Access the Laravel container to install dependencies and run migrations:
 
-```bash
+Access the Laravel container and finalize the setup:
 docker exec -it laravel-app bash
+
 composer install
+php artisan key:generate
 php artisan migrate
+
 npm install
 npm run build
 exit
-```
-4. Your app should now be accessible at:
 
-    - Laravel API: http://localhost:9000
-    - MySQL server is available on port 3306 with credentials set in .env
+Visit:
+
+API: http://localhost:9000/api
+
+Frontend: http://localhost:9000
+
+MySQL: localhost:3306
+```
+
+
+📡 API Endpoints
+```
+Method	Endpoint	Description
+GET	/api/users	Get all users with their notes
+GET	/api/notes	Get all notes with associated user
+POST	/api/notes	Create a new note (requires user_id, title, body)
+
+All API routes are prefixed with /api and return JSON responses.
+```
+
+🖥️ Frontend (Vue.js)
+The frontend is a single-page Vue.js 3 app that:
+
+Lists all notes (with user names)
+
+Allows note creation via a form (select user, input title/body)
+
+Uses localStorage to store auth tokens
+
+Handles routing using Vue Router (/ for login, /dashboard for main UI)
+
+🔐 Authentication
+Basic fake login token is stored in localStorage for routing purposes.
+
+Logout clears the token and redirects to login.
+
+📸 Screenshots
+Add screenshots here if needed (Dashboard UI, Note Form, etc.)
+
+🧪 Testing
+Basic functional testing is done via manual form input and API response checks.
+
+📝 License
+This project is open-source and free to use for educational or demo purposes.
+
+🙋‍♂️ Author
+Developed by Kristijan Opacic – Laravel & Vue.js Full Stack Developer

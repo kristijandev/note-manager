@@ -51,7 +51,7 @@ class AuthController extends Controller
         // Check user credentials, using hash decrypting password
         if (!$user || !Hash::check($request->password, $user->password)) {
             throw ValidationException::withMessages([
-                'email' => ['The provided credentials are incorrect.'],
+                'email' => 'The provided credentials are incorrect.',
             ]);
         }
 
