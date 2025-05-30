@@ -1,8 +1,5 @@
 <?php
 
-use App\Http\Controllers\API\AuthController;
-use App\Http\Controllers\API\NotesController;
-use App\Http\Controllers\API\UsersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,14 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
-
-Route::middleware('auth.api')->group(function () {
-
-    Route::get('/notes', [NotesController::class, 'index']);
-    Route::post('/notes', [NotesController::class, 'store']);
-
-    Route::get('/users', [UsersController::class, 'index']);
-
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
 });

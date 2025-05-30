@@ -45,10 +45,6 @@ class Kernel extends HttpKernel
         ],
     ];
 
-    protected $routeMiddleware = [
-        'auth.api' => \App\Http\Middleware\ApiTokenMiddleware::class,
-    ];
-
     /**
      * The application's middleware aliases.
      *
